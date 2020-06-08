@@ -1,6 +1,6 @@
 package pm.gnosis.safe.sdk.network.repositories
 
-import pm.gnosis.safe.sdk.network.TransactionServiceApi
+import pm.gnosis.safe.sdk.network.api.TransactionServiceApi
 
 class TransactionRepository(
     private val transactionServiceApi: TransactionServiceApi

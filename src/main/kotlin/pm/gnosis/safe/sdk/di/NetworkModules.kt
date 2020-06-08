@@ -1,7 +1,7 @@
 package pm.gnosis.safe.sdk.di
 
 import org.koin.dsl.module
-import pm.gnosis.safe.sdk.network.TransactionServiceApi
+import pm.gnosis.safe.sdk.network.api.TransactionServiceApi
 import pm.gnosis.safe.sdk.network.repositories.TransactionRepository
 import retrofit2.Retrofit
 
