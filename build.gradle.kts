@@ -6,6 +6,7 @@ group = "pm.gnosis.safe.sdk"
 version = "1.0-SNAPSHOT"
 
 repositories {
+    jcenter()
     mavenCentral()
     maven { url = uri("https://www.jitpack.io") }
 }
