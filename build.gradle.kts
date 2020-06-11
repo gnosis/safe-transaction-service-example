@@ -9,6 +9,8 @@ val bivrost = "0.8.0"
 val koinVersion = "2.1.5"
 val retrofit = "2.9.0"
 val moshi = "1.9.2"
+val bouncycastle = "1.61"
+val okio = "2.4.1"
 
 repositories {
     jcenter()
@@ -23,6 +25,11 @@ dependencies {
 
     implementation("com.github.gnosis.bivrost-kotlin:bivrost-solidity-types:$bivrost")
     implementation("org.koin:koin-core:$koinVersion")
+
+    implementation("org.bouncycastle:bcprov-jdk15on:$bouncycastle") {
+        exclude("junit", "junit")
+    }
+    implementation("com.squareup.okio:okio:$okio")
 }
 
 tasks {
