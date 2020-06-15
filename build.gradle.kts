@@ -11,6 +11,7 @@ val retrofit = "2.9.0"
 val moshi = "1.9.2"
 val bouncycastle = "1.61"
 val okio = "2.4.1"
+val svalinn = "3b8797c15c"
 
 repositories {
     jcenter()
@@ -29,7 +30,11 @@ dependencies {
     implementation("org.bouncycastle:bcprov-jdk15on:$bouncycastle") {
         exclude("junit", "junit")
     }
+
     implementation("com.squareup.okio:okio:$okio")
+//
+//    implementation("com.github.gnosis.svalinn-kotlin:utils:$svalinn")
+//    implementation("com.github.gnosis.svalinn-kotlin:crypto:$svalinn")
 }
 
 tasks {

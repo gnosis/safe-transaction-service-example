@@ -1,0 +1,1 @@
+Create file called `.env.private_key` in the root of the project containing your private key in hex.
