@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+
     implementation("com.squareup.retrofit2:retrofit:$retrofit")
     implementation("com.squareup.moshi:moshi:$moshi")
 
@@ -32,9 +33,6 @@ dependencies {
     }
 
     implementation("com.squareup.okio:okio:$okio")
-//
-//    implementation("com.github.gnosis.svalinn-kotlin:utils:$svalinn")
-//    implementation("com.github.gnosis.svalinn-kotlin:crypto:$svalinn")
 }
 
 tasks {

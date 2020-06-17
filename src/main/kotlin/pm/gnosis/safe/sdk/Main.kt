@@ -1,6 +1,5 @@
 package pm.gnosis.safe.sdk
 
-import pm.gnosis.safe.sdk.transactions.TransactionDispatcher
 import org.koin.core.context.startKoin
 import pm.gnosis.safe.sdk.di.networkModules
 import pm.gnosis.safe.sdk.transactions.TransactionBuilder
@@ -11,9 +10,18 @@ fun main() {
         printLogger()
         modules(networkModules)
     }
-    val transaction = TransactionBuilder()
-    TransactionDispatcher()
+    with(TransactionBuilder()) {
+        val (seed, safe) = File(".env.private_key").let { file ->
+            file.useLines {
+                it.windowed(2, 2, false).first().let {
+                    it[0] to it[1]
+                }
+            }
+        }
 
-    File(".env.private_key").forEachLine { println(it) }
+        println("Seed: $seed")
+        println("Safe: $safe")
+        sign(seed)
+    }
 }
 
