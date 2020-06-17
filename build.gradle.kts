@@ -1,4 +1,16 @@
+buildscript {
+    repositories {
+        google()
+        maven { url = uri("https://www.jitpack.io") }
+    }
+    dependencies {
+        classpath("com.github.gnosis.bivrost-kotlin:bivrost-gradle-plugin:0.8.0")
+    }
+}
+apply(plugin = "bivrost")
+
 plugins {
+    java
     kotlin("jvm") version "1.3.72"
 }
 
