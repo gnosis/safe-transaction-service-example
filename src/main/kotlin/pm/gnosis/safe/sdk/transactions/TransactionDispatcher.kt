@@ -12,5 +12,6 @@ class TransactionDispatcher : KoinComponent {
     private val safeManager by inject<SafeManager>()
 
     suspend fun submit() {
+        transactionRepository
     }
 }

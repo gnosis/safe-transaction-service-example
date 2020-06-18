@@ -1,27 +1,23 @@
 package pm.gnosis.safe.sdk.network.models
 
-import java.math.BigInteger
 import pm.gnosis.model.Solidity
+import java.math.BigInteger
 
-data class TransactionDto(
-    val safe: Solidity.Address,
-    val to: Solidity.Address? = null,
-    val value: BigInteger,
+data class Transaction(
+    val address: Solidity.Address,
+    val value: Wei? = null,
+    var gas: BigInteger? = null,
+    var gasPrice: BigInteger? = null,
     val data: String? = null,
-    val operation: Operation,
-    val gasToken: Solidity.Address? = null,
-    val safeTxGas: BigInteger,
-    val baseGas: BigInteger,
-    val gasPrice: BigInteger,
-    val refundReceiver: Solidity.Address? = null,
-    val nonce: BigInteger? = null,
-    val contractTransactionHash: String,
-    val sender: Solidity.Address,
-    val signature: String? = null,
-    val origin: String? = null
-)
+    var nonce: BigInteger? = null,
+    val chainId: Int = CHAIN_ID_ANY
+) {
+    fun signable() = nonce != null && gas != null && gasPrice != null
 
-enum class Operation(val id: Int) {
-    CALL(0),
-    DELEGATE(1)
+    companion object {
+        const val CHAIN_ID_ANY = 0
+    }
 }
+
+
+data class TransactionDto(val nonce: BigInteger?)

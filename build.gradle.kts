@@ -1,14 +1,3 @@
-buildscript {
-    repositories {
-        google()
-        maven { url = uri("https://www.jitpack.io") }
-    }
-    dependencies {
-        classpath("com.github.gnosis.bivrost-kotlin:bivrost-gradle-plugin:0.8.0")
-    }
-}
-apply(plugin = "bivrost")
-
 plugins {
     java
     kotlin("jvm") version "1.3.72"
@@ -24,6 +13,7 @@ val moshi = "1.9.2"
 val bouncycastle = "1.61"
 val okio = "2.4.1"
 val svalinn = "3b8797c15c"
+val okhttp = "3.14.4"
 
 repositories {
     jcenter()
@@ -44,6 +34,9 @@ dependencies {
         exclude("junit", "junit")
     }
 
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
+
+    implementation ("com.squareup.okhttp3:logging-interceptor:$okhttp")
     implementation("com.squareup.okio:okio:$okio")
 }
 
