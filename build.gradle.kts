@@ -8,13 +8,14 @@ group = "pm.gnosis.safe.sdk"
 version = "1.0-SNAPSHOT"
 
 val bivrost = "0.8.0"
-val koinVersion = "2.1.5"
+val koin = "2.1.5"
 val retrofit = "2.9.0"
 val moshi = "1.9.2"
 val bouncycastle = "1.61"
 val okio = "2.4.1"
 val svalinn = "3b8797c15c"
 val okhttp = "3.14.4"
+val coroutines = "1.3.7"
 
 repositories {
     jcenter()
@@ -34,13 +35,13 @@ dependencies {
     kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshi")
 
     implementation("com.github.gnosis.bivrost-kotlin:bivrost-solidity-types:$bivrost")
-    implementation("org.koin:koin-core:$koinVersion")
+    implementation("org.koin:koin-core:$koin")
 
     implementation("org.bouncycastle:bcprov-jdk15on:$bouncycastle") {
         exclude("junit", "junit")
     }
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines")
 
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttp")
     implementation("com.squareup.okio:okio:$okio")
