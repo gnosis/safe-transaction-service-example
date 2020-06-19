@@ -15,4 +15,6 @@ class TransactionRepository(
         safe: Solidity.Address,
         transaction: TransactionDto
     ) = transactionServiceApi.submitTransactions(safe.asEthereumAddressChecksumString(), transaction)
+
+    suspend fun submitSomething(safe: Solidity.Address) = ethereumRepository.getBalance(safe)
 }

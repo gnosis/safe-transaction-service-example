@@ -27,9 +27,6 @@ val networkModules = module {
                 }
             }
         }
-        println("Seed: $seed")
-        println("Safe: $safe")
-        println("Infura: $infura")
         Environment(safe, seed, infura)
     }
 
@@ -55,12 +52,22 @@ val networkModules = module {
     single<EthereumRpcConnector> { RetrofitEthereumRpcConnector(get()) }
 
     single<RetrofitEthereumRpcApi> {
-        val environment: Environment = get()
-        val client = OkHttpClient.Builder().apply {
+        Retrofit.Builder()
+            .client(get())
+            .baseUrl("https://rinkeby.infura.io/v3/")
+            .addConverterFactory(MoshiConverterFactory.create(get()))
+            .build()
+            .create(RetrofitEthereumRpcApi::class.java)
+    }
+
+    single { MoshiBuilderFactory.makeMoshiBuilder().build() }
+
+    single {
+        OkHttpClient.Builder().apply {
             addInterceptor {
                 val request = it.request()
                 val builder = request.url().newBuilder()
-                val url = builder.addPathSegment(environment.infuraKey).build()
+                val url = builder.addPathSegment(get<Environment>().infuraKey).build()
                 it.proceed(request.newBuilder().url(url).build())
             }
             addInterceptor(
@@ -69,16 +76,5 @@ val networkModules = module {
                 }
             )
         }.build()
-
-        Retrofit.Builder()
-            .client(client)
-            .baseUrl("https://rinkeby.infura.io/v3/")
-            .addConverterFactory(MoshiConverterFactory.create(get()))
-            .build()
-            .create(RetrofitEthereumRpcApi::class.java)
-    }
-
-    single {
-        MoshiBuilderFactory.makeMoshiBuilder().build()
     }
 }
