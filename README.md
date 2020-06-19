@@ -17,3 +17,6 @@ For the sake of reusability of our Android code, [retrofit](https://github.com/s
 ### Safe Transaction service and ABI method calls
 
 We generated the bindings in kotlin using [bivrost-kotlin](https://github.com/gnosis/bivrost-kotlin) and we called the methods `Nonce` and `GetTransactionHash` for the purpose of this demo. From the [Safe transaction service](https://safe-transaction.rinkeby.gnosis.io/) we used the `/safes/{address}/transactions/` endpoint for proposing the transaction.
+
+### Build and Run on the command line
+`./gradlew run`
