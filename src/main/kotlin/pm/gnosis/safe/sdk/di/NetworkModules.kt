@@ -41,6 +41,7 @@ val networkModules = module {
         Retrofit.Builder()
             .client(client)
             .baseUrl(TransactionServiceApi.BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create(get()))
             .build()
             .create(TransactionServiceApi::class.java)
     }
@@ -60,7 +61,10 @@ val networkModules = module {
             .create(RetrofitEthereumRpcApi::class.java)
     }
 
-    single { MoshiBuilderFactory.makeMoshiBuilder().build() }
+    single {
+        MoshiBuilderFactory
+            .makeMoshiBuilder().build()
+    }
 
     single {
         OkHttpClient.Builder().apply {

@@ -4,7 +4,8 @@ import pm.gnosis.ethereum.EthereumRepository
 import pm.gnosis.model.Solidity
 import pm.gnosis.safe.sdk.crypto.utils.asEthereumAddressChecksumString
 import pm.gnosis.safe.sdk.network.api.TransactionServiceApi
-import pm.gnosis.safe.sdk.network.models.TransactionDto
+import pm.gnosis.safe.sdk.network.models.SafeTransaction
+import pm.gnosis.safe.sdk.network.models.ServiceTransaction
 
 class TransactionRepository(
     private val transactionServiceApi: TransactionServiceApi,
@@ -12,9 +13,9 @@ class TransactionRepository(
 ) {
 
     suspend fun submitTransaction(
-        safe: Solidity.Address,
-        transaction: TransactionDto
-    ) = transactionServiceApi.submitTransactions(safe.asEthereumAddressChecksumString(), transaction)
+        data: ServiceTransaction,
+        address: Solidity.Address
+    ) = transactionServiceApi.submitTransactions(address.asEthereumAddressChecksumString(), data)
 
     suspend fun submitSomething(safe: Solidity.Address) = ethereumRepository.getBalance(safe)
 }
