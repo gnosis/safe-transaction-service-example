@@ -6,6 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import pm.gnosis.ethereum.EthereumRepository
 import pm.gnosis.safe.sdk.Environment
+import pm.gnosis.safe.sdk.network.MoshiBuilderFactory
 import pm.gnosis.safe.sdk.network.rpc.RpcEthereumRepository
 import pm.gnosis.safe.sdk.network.api.TransactionServiceApi
 import pm.gnosis.safe.sdk.network.repositories.TransactionRepository
@@ -13,6 +14,7 @@ import pm.gnosis.safe.sdk.network.rpc.EthereumRpcConnector
 import pm.gnosis.safe.sdk.network.rpc.retrofit.RetrofitEthereumRpcApi
 import pm.gnosis.safe.sdk.network.rpc.retrofit.RetrofitEthereumRpcConnector
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
 
 val networkModules = module {
@@ -71,8 +73,12 @@ val networkModules = module {
         Retrofit.Builder()
             .client(client)
             .baseUrl("https://rinkeby.infura.io/v3/")
-//                .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addConverterFactory(MoshiConverterFactory.create(get()))
             .build()
             .create(RetrofitEthereumRpcApi::class.java)
+    }
+
+    single {
+        MoshiBuilderFactory.makeMoshiBuilder().build()
     }
 }

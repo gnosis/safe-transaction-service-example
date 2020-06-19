@@ -1,6 +1,7 @@
 plugins {
     java
     kotlin("jvm") version "1.3.72"
+    kotlin("kapt") version "1.3.72"
 }
 
 group = "pm.gnosis.safe.sdk"
@@ -25,7 +26,12 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
     implementation("com.squareup.retrofit2:retrofit:$retrofit")
+    implementation("com.squareup.retrofit2:converter-moshi:$retrofit") {
+        exclude(group = "com.squareup.moshi", module = "moshi")
+    }
+
     implementation("com.squareup.moshi:moshi:$moshi")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshi")
 
     implementation("com.github.gnosis.bivrost-kotlin:bivrost-solidity-types:$bivrost")
     implementation("org.koin:koin-core:$koinVersion")
@@ -36,7 +42,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
 
-    implementation ("com.squareup.okhttp3:logging-interceptor:$okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor:$okhttp")
     implementation("com.squareup.okio:okio:$okio")
 }
 
