@@ -41,7 +41,7 @@ class TransactionDispatcher : KoinComponent {
 
 
         // We keep a reference to the public address of the safe to which our EOA is an owner of
-        val safe = "0xd6f5Bef6bb4acD235CF85c0ce196316d10785d67".asEthereumAddress()!!
+        val safe = environment.safeAddress.asEthereumAddress()!!
 
         // We request via JSON RPC the current nonce of our safe, we need to know this nonce before submitting to
         // the safe transaction service. If we submit a transaction with a safe smaller than the the current safe
