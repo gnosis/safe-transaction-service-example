@@ -2,10 +2,14 @@ plugins {
     java
     kotlin("jvm") version "1.3.72"
     kotlin("kapt") version "1.3.72"
+    application
 }
 
 group = "pm.gnosis.safe.sdk"
 version = "1.0-SNAPSHOT"
+application {
+    mainClass.set("pm.gnosis.safe.sdk.MainKt")
+}
 
 val bivrost = "0.8.0"
 val koin = "2.1.5"
